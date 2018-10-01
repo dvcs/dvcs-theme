@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include site-head.html %}
+  </head>
+  <body class="{{ site.doks.color_theme }}">
+    {% include site-header.html %}
+    <div class="hero-subheader">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="align-container" data-mh>
+              <div class="align-inner">
+                {% if page.title %}
+                  <h1 class="hero-subheader__title">{{ page.title }}</h1>
+                {% endif %}
+                {% if page.description %}
+                  <p class="hero-subheader__desc">{{ page.description }}</p>
+                {% endif %}
+                {% if page.page_nav.prev.content or page.page_nav.next.content %}
+                  {% if page.page_nav.prev.content and page.page_nav.prev.url %}
+                    <a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="btn btn--dark btn--rounded btn--w-icon btn--w-icon-left">
+                      <i class="icon icon--arrow-left"></i>
+                      {{ page.page_nav.prev.content }}
+                    </a>
+                  {% endif %}
+                  {% if page.page_nav.next.content and page.page_nav.next.url %}
+                    <a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.next.url }}" class="btn btn--dark btn--rounded btn--w-icon">
+                      <i class="icon icon--arrow-right"></i>
+                      {{ page.page_nav.next.content }}
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </div><!-- /.align-inner -->
+            </div><!-- /.align-container -->
+          </div><!-- /.col -->
+          {% if page.author.title and page.author.description and page.author.title_url %}
+            <div class="col-md-4 col-md-offset-1 hidden-xs hidden-sm">
+              <div class="align-container" data-mh>
+                <div class="align-inner">
+                  <div class="hero-subheader__author">
+                    <p class="hero-subheader__author-title">
+                      {% if button.external_url == true %}
+                      <a href="{{ page.author.title_url }}" class="btn btn--read-more">
+                        {{ page.author.title }}
+                        <i class="icon icon--arrow-right"></i>
+                      </a>
+                      {% else %}
+                      <a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.author.title_url }}" class="btn btn--read-more">
+                        {{ page.author.title }}
+                        <i class="icon icon--arrow-right"></i>
+                      </a>
+                      {% endif %}
+                    </p><!-- /.hero-subheader__author-title -->
+                    <p>{{ page.author.description }}</p>
+                  </div><!-- /.hero-subheader__author -->
+                </div><!-- /.align-inner -->
+              </div><!-- /.align-container -->
+            </div><!-- /.col -->
+          {% endif %}
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div><!-- /.hero-subheader -->
+    {% if page.tag %}
+      <div class="section section--darker-theme-color-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="nav-grid nav-grid--out">
+                <div class="row">
+                  {% for product in site.products %}
+                    {% if product.tags contains page.tag %}
+                      <div class="col-sm-12 col-lg-6">
+                        <a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ product.site }}" class="nav-grid__item">
+                          <div class="nav-grid__content" data-mh>
+                            <h2 class="nav-grid__title">{{ product.title }}</h2>
+                            <p>{{ product.excerpt }}</p>
+                          </div><!-- /.nav-grid__content -->
+                          <img src="{{ product.preview }}"/>
+                          <p class="nav-grid__btn">
+                            {{ product.cta }}
+                            <i class="icon icon--arrow-right"></i>
+                          </p>
+                        </a><!-- /.nav-grid__item -->
+                      </div><!-- /.col -->
+                    {% endif %}
+                  {% endfor %}
+                </div><!-- /.row -->
+              </div><!-- /.nav-grid -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container -->
+      </div><!-- /.section -->
+    {% endif %}
+    {% include site-footer.html %}
+  </body>
+</html>
