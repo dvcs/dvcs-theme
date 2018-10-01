@@ -1,0 +1,44 @@
+/**
+ * dvcs (themes/_dvcs.scss)
+ */
+
+/* ----- Hero subheader ----- */
+.dvcs {
+	.hero-subheader {
+		background-color: $color-theme-dvcs;
+	}
+}
+
+/* ----- Nav grid ----- */
+.dvcs {
+	.nav-grid__item {
+		background-color: $color-theme-dvcs;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: $color-theme-dvcs;
+		}
+	}
+}
+
+/* ----- Section ----- */
+.dvcs {
+	.section--darker-theme-color-bg {
+		background-color: darken($color-theme-dvcs, 3%);
+	}
+}
+
+/* ----- Page nav ----- */
+.dvcs {
+	.page-nav {
+		background-color: $color-theme-dvcs;
+	}
+}
+
+/* ----- Error 404 ----- */
+.dvcs {
+	&.error-404 {
+		background-color: $color-theme-dvcs;
+	}
+}
